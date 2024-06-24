@@ -1,0 +1,22 @@
+def merge_intervals(intervalos):
+  ni=[]
+  for i in intervalos:
+    for j in intervalos[1:]:
+      if i[1]>j[0]:
+        if i[1]<j[1]:
+          i[1]=j[1]
+  ni.append(i)
+  return intervalos
+merge_intervals([[1, 6], [2, 3], [3, 9], [32, 47], [12, 28]])
+
+def merge_intervals(intervalos):
+  for i in intervalos:
+    for j in intervalos[1:]:
+      if i[1]>j[0]:
+        if i[1]>j[1]:
+          intervalos.remove(j)
+        if i[1]<j[1]:
+          i[1]=j[1]
+          intervalos.remove(j)
+  return intervalos
+merge_intervals([[1, 6], [2, 3], [3, 9], [32, 47], [12, 28]])
