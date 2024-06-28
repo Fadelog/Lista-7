@@ -1,6 +1,7 @@
 #Questão 2
 
 def merge_intervals(intervalos):
+  intervalos.sort()
   for index_i,i in enumerate(intervalos):
     for j in intervalos[index_i+1:]:
       if i[1]>=j[0]:
@@ -11,7 +12,7 @@ def merge_intervals(intervalos):
           intervalos.remove(j)
   return intervalos
 
-print(merge_intervals([[1, 6], [2, 3], [3, 9], [12, 28], [13, 32], [32, 47]])
+print(merge_intervals([[1, 6], [2, 3], [3, 9], [12, 28], [32, 47], [13, 32]]))
 
 #Questão 3
 
