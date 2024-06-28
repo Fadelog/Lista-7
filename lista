@@ -1,3 +1,5 @@
+#Questão 2
+
 def merge_intervals(intervalos):
   for index_i,i in enumerate(intervalos):
     for j in intervalos[index_i+1:]:
@@ -11,6 +13,7 @@ def merge_intervals(intervalos):
 
 print(merge_intervals([[1, 6], [2, 3], [3, 9], [12, 28], [13, 32], [32, 47]])
 
+#Questão 3
 
 def missing_int(lista):
     esq= 0
@@ -27,3 +30,50 @@ def missing_int(lista):
     # No final, left será o índice onde a transição ocorre, então o primeiro faltante é nums[0] + left
     return lista[0] + esq
 missing_int([5, 6, 7, 8, 9, 11, 22])
+
+
+#Questãao 4
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Lista_encadeada:
+    def __init__(self, lista):
+        self.head = Node(lista[0])
+        no_atual = self.head
+        for numero in lista[1:]:
+            novo_no = Node(numero)
+            no_atual.next = novo_no
+            no_atual = novo_no
+
+    def vamos_printar(self):
+        no_atual = self.head
+        while no_atual is not None:
+            print(no_atual.data, end=" ")
+            no_atual = no_atual.next
+        print()
+
+    def isPalindrome(self):
+        def inverte_ordem():
+            no_atual = self.head
+            lista_inversa = []
+            while no_atual is not None:
+                lista_inversa.insert(0, no_atual.data)
+                no_atual = no_atual.next
+            return Lista_encadeada(lista_inversa)
+
+        def comparar(lista, lista_inversa):
+            while lista and lista_inversa:
+                if lista.data != lista_inversa.data:
+                    return False
+                lista = lista.next
+                lista_inversa = lista_inversa.next
+            return True
+
+        lista_inversa = inverte_ordem().head
+        return comparar(self.head, lista_inversa)
+
+cabeca = Lista_encadeada(['a', 'b', 'a'])
+print(cabeca.isPalindrome())
