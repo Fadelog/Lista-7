@@ -1,3 +1,48 @@
+#Questão 1
+
+import csv
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def polinomio(x):
+  return x**8-3*x**4+2*x**3-2*x**2-x+2
+
+ci=-1.5 #começo do intervalo
+fi= 1.5 #final do intervalo
+numpontos= 1000 #número de pontos 
+passo = (fi-ci)/(numpontos-1)
+pontos=[]
+
+for _ in range(numpontos): #gera os pontos 
+  y=polinomio(ci)
+  pontos.append((ci, y))
+  ci = ci + passo 
+
+arquivo= 'pontos_do_polinomio.csv'
+
+with open(arquivo, 'w', newline='') as arquivo_csv: #w é para escrever
+  escrever = csv.writer(arquivo_csv)
+  escrever.writerow(['x', 'y']) #cria uma linha indicando qual coluna é x e qual é y no arquivo
+  for ponto in pontos:
+    escrever.writerow(ponto)
+
+# Ler pontos do arquivo CSV
+nome_arquivo = 'pontos_polinomio.csv'
+dados = pd.read_csv(nome_arquivo)
+
+x = dados['x']
+y = dados['y']
+
+# Plotar o gráfico
+plt.figure(figsize=(8, 6))
+plt.plot(x, y, label='P(x) = x^8 - 3x^4 + 2x^3 - 2x^2 - x + 2', color='blue')
+plt.title('Gráfico do polinômio P(x)')
+plt.xlabel('x')
+plt.ylabel('P(x)')
+plt.legend()
+plt.grid(True)
+plt.show()
+
 #Questão 2
 
 def merge_intervals(intervalos):
