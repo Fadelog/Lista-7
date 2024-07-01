@@ -27,7 +27,7 @@ with open(arquivo, 'w', newline='') as arquivo_csv: #w é para escrever
     escrever.writerow(ponto)
 
 # Ler pontos do arquivo CSV
-nome_arquivo = 'pontos_polinomio.csv'
+nome_arquivo = 'pontos_do_polinomio.csv'
 dados = pd.read_csv(nome_arquivo)
 
 x = dados['x']
